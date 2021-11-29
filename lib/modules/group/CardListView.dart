@@ -28,6 +28,19 @@ class _CardListViewState extends State<CardListView> {
     return Scaffold(
       appBar: AppBar(
         title: Text("BingImageList"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.cleaning_services),
+            onPressed: () {
+              PaintingBinding.instance!.imageCache!.clear();
+              Get.defaultDialog(
+                title: '提示',
+                middleText: '清除图片缓存成功',
+                textCancel: '好的',
+              );
+            },
+          ),
+        ],
       ),
       body: getBody(),
     );
@@ -56,7 +69,15 @@ class _CardListViewState extends State<CardListView> {
 
   getItemIcon(String title) {
     bool fav = dict[title] ?? false;
-    return fav ? Icon(Icons.favorite) : Icon(Icons.favorite_border);
+    return fav
+        ? Icon(
+            Icons.favorite,
+            color: Colors.red,
+          )
+        : Icon(
+            Icons.favorite_border,
+            color: Colors.white,
+          );
   }
 
   getCard(BingImageModel model) {
@@ -65,6 +86,9 @@ class _CardListViewState extends State<CardListView> {
         //带参数push
         var result = await Get.toNamed(Routes.PAGE_CARD_DETAIL, arguments: model);
         print('回传参数: $result');
+        if (result == null) {
+          return;
+        }
         String key = result['key'];
         bool value = result['result'];
         //Alert
@@ -92,6 +116,7 @@ class _CardListViewState extends State<CardListView> {
                     image: model.url ?? "",
                     fit: BoxFit.cover,
                     placeholder: kTransparentImage,
+                    height: 200,
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 0, 0),

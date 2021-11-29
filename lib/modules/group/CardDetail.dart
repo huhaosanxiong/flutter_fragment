@@ -24,7 +24,7 @@ class _CardDetailViewState extends State<CardDetailView> {
           children: [
             Image.network(
               model.url ?? '',
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
             SizedBox(
               height: 100,
