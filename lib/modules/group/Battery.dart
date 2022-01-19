@@ -15,13 +15,11 @@ class _BatteryGetterState extends State<BatteryGetter> {
     String batteryLevel;
 
     try {
-      final int result = await platform
-          .invokeMethod('getBatteryLevel', ["getBatteryLevel", 100]);
+      final int result = await platform.invokeMethod('getBatteryLevel', ["getBatteryLevel"]);
       print('获取原生的值: 电量$result%');
       batteryLevel = 'Battery level at $result%.';
     } on PlatformException catch (exception) {
-      batteryLevel =
-          "Failed to get battery level, message: '${exception.message}'";
+      batteryLevel = "Failed to get battery level, message: '${exception.message}'";
     }
 
     setState(() {

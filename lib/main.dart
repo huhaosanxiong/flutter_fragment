@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.pages,
       locale: Locale('zh', ''),
       fallbackLocale: Locale('en', ''),
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.native,
       translationsKeys: AppTranslation.translations,
 
       // localizationsDelegates: [

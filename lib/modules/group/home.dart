@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/modules/local/app_translation.dart';
@@ -23,6 +24,7 @@ class MyHomePage extends StatefulWidget {
     Item(name: 'page_getip', title: LocaleKeys.get_ip.tr),
     Item(name: 'page_battery', title: LocaleKeys.get_battery.tr),
     Item(name: 'page_cardlist', title: LocaleKeys.card_listview.tr),
+    Item(name: 'page_flutter_call_native', title: LocaleKeys.fluter_call_native.tr),
   ];
 
   @override
@@ -30,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = MethodChannel('myflutter.com/home');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +41,17 @@ class _MyHomePageState extends State<MyHomePage> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              if (Navigator.of(context).canPop()) {
+                Navigator.of(context).pop();
+              } else {
+                platform.invokeMethod('pop', null);
+                print("back");
+              }
+            },
+          ),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.book),

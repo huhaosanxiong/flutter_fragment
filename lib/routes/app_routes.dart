@@ -11,4 +11,5 @@ abstract class Routes {
   static const PAGE_GETIPADDRESS = "/page_getip";
   static const PAGE_SHOPPINGLIST = "/page_shoppinglist";
   static const PAGE_CARD_DETAIL = "/page_card_detail";
+  static const PAGE_FLUTTER_CALL_NATIVE = "/page_flutter_call_native";
 }
