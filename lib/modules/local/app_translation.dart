@@ -18,7 +18,9 @@ abstract class LocaleKeys {
   static const get_ip = 'get_ip';
   static const get_battery = 'get_battery';
   static const card_listview = 'card_listview';
-  static const fluter_call_native = 'flutter_call_native';
+  static const flutter_call_native = 'flutter_call_native';
+  static const flutter_infinite_listview = 'flutter_infinite_listview';
+  static const flutter_pageview = 'flutter_pageview';
 }
 
 abstract class Locales {
@@ -34,7 +36,9 @@ abstract class Locales {
     LocaleKeys.async_listview: 'async listview',
     LocaleKeys.get_battery: 'get battery',
     LocaleKeys.card_listview: 'card listview',
-    LocaleKeys.fluter_call_native: 'fluter call native',
+    LocaleKeys.flutter_call_native: 'flutter call native',
+    LocaleKeys.flutter_infinite_listview: 'infinite listview',
+    LocaleKeys.flutter_pageview: 'pageview',
   };
   static const zh_CN = {
     LocaleKeys.buttons_login: '登录',
@@ -48,7 +52,9 @@ abstract class Locales {
     LocaleKeys.async_listview: '异步加载列表',
     LocaleKeys.get_battery: '获取电池电量',
     LocaleKeys.card_listview: '卡片列表',
-    LocaleKeys.fluter_call_native: 'flutter 调用原生',
+    LocaleKeys.flutter_call_native: 'flutter 调用原生',
+    LocaleKeys.flutter_infinite_listview: 'infinite listview',
+    LocaleKeys.flutter_pageview: 'pageview',
   };
 
   static const fr_CA = {};

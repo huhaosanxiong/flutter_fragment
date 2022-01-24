@@ -37,13 +37,49 @@ class _FadeTestState extends State<FadeTest> with TickerProviderStateMixin {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Container(
-          child: FadeTransition(
-            opacity: curvedAnimation,
-            child: FlutterLogo(
-              size: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: FadeTransition(
+                opacity: curvedAnimation,
+                child: FlutterLogo(
+                  size: 100,
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              height: 20,
+            ),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.0),
+                gradient: LinearGradient(colors: [Colors.red, Colors.orange]),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 3.0,
+                    offset: Offset(3.0, 3.0),
+                    blurStyle: BlurStyle.normal,
+                    color: Colors.black45,
+                  )
+                ],
+              ),
+              //旋转
+              child: RotatedBox(
+                quarterTurns: 1, //旋转90度(1/4圈)
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                  child: Text(
+                    'DecoratedBox',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

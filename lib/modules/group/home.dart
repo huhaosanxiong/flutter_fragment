@@ -24,7 +24,9 @@ class MyHomePage extends StatefulWidget {
     Item(name: 'page_getip', title: LocaleKeys.get_ip.tr),
     Item(name: 'page_battery', title: LocaleKeys.get_battery.tr),
     Item(name: 'page_cardlist', title: LocaleKeys.card_listview.tr),
-    Item(name: 'page_flutter_call_native', title: LocaleKeys.fluter_call_native.tr),
+    Item(name: 'page_flutter_call_native', title: LocaleKeys.flutter_call_native.tr),
+    Item(name: 'page_infinite_listview', title: LocaleKeys.flutter_infinite_listview.tr),
+    Item(name: 'page_pageview', title: LocaleKeys.flutter_pageview.tr),
   ];
 
   @override

@@ -53,9 +53,11 @@ class _CardListViewState extends State<CardListView> {
   }
 
   getListView() {
-    return ListView.builder(
-      itemCount: datasource.length,
-      itemBuilder: (context, index) => getCard(datasource[index]),
+    return Scrollbar(
+      child: ListView.builder(
+        itemCount: datasource.length,
+        itemBuilder: (context, index) => getCard(datasource[index]),
+      ),
     );
   }
 

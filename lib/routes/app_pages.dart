@@ -7,7 +7,9 @@ import 'package:my_flutter/modules/group/CardListView.dart';
 import 'package:my_flutter/modules/group/GetIPAddress.dart';
 import 'package:my_flutter/modules/group/ShoppingList.dart';
 import 'package:my_flutter/modules/group/home.dart';
+import 'package:my_flutter/modules/group/pageview.dart';
 import 'package:my_flutter/modules/group/pigeon_call.dart';
+import 'package:my_flutter/modules/group/infinite_listview.dart';
 
 part 'app_routes.dart';
 
@@ -50,6 +52,14 @@ abstract class AppPages {
     GetPage(
       name: Routes.PAGE_FLUTTER_CALL_NATIVE,
       page: () => FlutterCallNative(),
-    )
+    ),
+    GetPage(
+      name: Routes.PAGE_INFINITE_LISTVIEW,
+      page: () => InfiniteListView(),
+    ),
+    GetPage(
+      name: Routes.PAGE_PAGEVIEW,
+      page: () => MyPageView(),
+    ),
   ];
 }
