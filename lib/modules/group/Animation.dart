@@ -79,6 +79,15 @@ class _FadeTestState extends State<FadeTest> with TickerProviderStateMixin {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: 300,
+              height: 100,
+              color: Colors.blue.shade50,
+              child: Drag(),
+            ),
           ],
         ),
       ),
@@ -98,5 +107,51 @@ class _FadeTestState extends State<FadeTest> with TickerProviderStateMixin {
     // TODO: implement dispose
     super.dispose();
     controller.dispose();
+  }
+}
+
+class Drag extends StatefulWidget {
+  @override
+  _DragState createState() => _DragState();
+}
+
+class _DragState extends State<Drag> {
+  double _left = 0;
+  double _top = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          left: _left,
+          top: _top,
+          child: GestureDetector(
+            child: CircleAvatar(
+              child: Text(
+                '拖',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            //手指按下时会触发此回调
+            onPanDown: (details) {
+              //打印手指按下的位置(相对于屏幕)
+              print("用户手指按下：${details.globalPosition}");
+            },
+            //手指滑动时会触发此回调
+            onPanUpdate: (details) {
+              //用户手指滑动时，更新偏移，重新构建
+              setState(() {
+                _left += details.delta.dx;
+                _top += details.delta.dy;
+              });
+            },
+            onPanEnd: (details) {
+              //打印滑动结束时在x、y轴上的速度
+              print(details.velocity);
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
