@@ -17,8 +17,19 @@ class _FadeTestState extends State<FadeTest> with TickerProviderStateMixin {
     // ignore: todo
     // TODO: implement initState
     super.initState();
-    controller = AnimationController(duration: Duration(milliseconds: 250), vsync: this);
+    controller = AnimationController(duration: Duration(seconds: 2), vsync: this);
     curvedAnimation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    curvedAnimation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        print('completed');
+        //动画执行结束时反向执行动画
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        print('dismissed');
+        //动画恢复到初始状态时执行动画（正向）
+        controller.forward();
+      }
+    });
   }
 
   showLogo() {
@@ -105,8 +116,8 @@ class _FadeTestState extends State<FadeTest> with TickerProviderStateMixin {
   void dispose() {
     // ignore: todo
     // TODO: implement dispose
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
 }
 
@@ -155,3 +166,37 @@ class _DragState extends State<Drag> {
     );
   }
 }
+
+//Flutter中正是通过这种方式封装了很多动画，如：FadeTransition、ScaleTransition、SizeTransition等，很多时候都可以复用这些预置的过渡类。
+class CustomTransition extends StatelessWidget {
+  final Widget? child;
+  final Animation<double> animation;
+
+  const CustomTransition({Key? key, required this.animation, this.child}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AnimatedBuilder(
+        animation: animation,
+        builder: (context, child) {
+          return Container(
+            height: animation.value,
+            width: animation.value,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+}
+
+/*
+...
+Widget build(BuildContext context) {
+  return CustomTransition(
+    child: Image.asset("images/avatar.png"), 
+    animation: animation,
+  );
+}
+*/
